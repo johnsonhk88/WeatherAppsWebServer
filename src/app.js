@@ -8,11 +8,39 @@ console.log(path.join(__dirname), '../public') // current directory find
 const app = express()
 const publicDirectoryPath = path.join(__dirname, '../public'); // provide default html path from current dir + target dir
 
+// set dynamic page with handlebars (views)
+app.set('view engine', 'hbs')   // 
 // set static html src directory
 app.use(express.static(publicDirectoryPath)) // use default index.html 
 //setup url endpoint 
 // send back json format
 
+
+app.get('', (req, res)=>{
+    // connect index.hbs page
+    res.render('index', {
+        title: 'Weather App',
+        name: 'Johnson Chong'
+    })
+
+})
+
+app.get('/about', (req, res)=>{
+    // connect about.hbs page
+      res.render('about', {
+        title: 'About Me',
+        name: 'Johnson Chong'
+    })  
+})
+
+app.get('/help', (req, res)=>{
+    // connect help.hbs page
+    res.render('help', {
+        title: 'Help',
+        helpText: 'This is some help Text'
+    })  
+    
+})
 
 app.get('/weather', (req, res)=>{
     // send back response with JSON 
