@@ -5,25 +5,36 @@ const app = express()
 //setup url endpoint 
 
 app.get('', (req, res)=> {
-    res.send('Hello express!') //body
+    res.send('<h1>Weather</h1>') //body
 
 
 })
 
+// send back json format
 app.get('/help', (req, res)=> {
-    res.send('<em>Help Page!</em>') //body
+    res.send([{
+                name: 'Andrew'
+            },
+            {
+                name: 'Johnson'
+            }
+        ]) //body
 
 
 })
 
 app.get('/about', (req, res)=>{
-    res.send('<h2>About Page!</h2>') //body
+    res.send('<h1>About</h1>') //body
 
 })
 
-app.get('/weather', (req, res)=>{
 
-    res.send('<h4>Your Weather Apps!</h4>') //body
+app.get('/weather', (req, res)=>{
+    // send back response with JSON 
+    res.send({
+        forecast:"Today is raining",
+        location: "Hong Kong"
+    }) //body
 })
 
 //app.com 
