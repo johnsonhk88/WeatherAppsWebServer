@@ -1,32 +1,17 @@
 const express = require('express')
+const path = require('path')
+
+console.log(__dirname)
+//console.log(__filename)
+console.log(path.join(__dirname), '../public') // current directory find 
 
 const app = express()
+const publicDirectoryPath = path.join(__dirname, '../public'); // provide default html path from current dir + target dir
 
+// set static html src directory
+app.use(express.static(publicDirectoryPath)) // use default index.html 
 //setup url endpoint 
-
-app.get('', (req, res)=> {
-    res.send('<h1>Weather</h1>') //body
-
-
-})
-
 // send back json format
-app.get('/help', (req, res)=> {
-    res.send([{
-                name: 'Andrew'
-            },
-            {
-                name: 'Johnson'
-            }
-        ]) //body
-
-
-})
-
-app.get('/about', (req, res)=>{
-    res.send('<h1>About</h1>') //body
-
-})
 
 
 app.get('/weather', (req, res)=>{
