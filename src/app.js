@@ -1,17 +1,24 @@
 const express = require('express')
 const path = require('path')
+const hbs = require('hbs')
 
 console.log(__dirname)
 //console.log(__filename)
 console.log(path.join(__dirname), '../public') // current directory find 
 
 const app = express()
-const publicDirectoryPath = path.join(__dirname, '../public'); // provide default html path from current dir + target dir
 
-// set dynamic page with handlebars (views)
+// Define paths for Express config
+const publicDirectoryPath = path.join(__dirname, '../public'); // provide default html path from current dir + target dir
+const viewsPath = path.join(__dirname, '../templates')
+
+// setup dynamic page with handlebars (views) and view location
 app.set('view engine', 'hbs')   // 
-// set static html src directory
+app.set('views', viewsPath)   // bond the views(view engine) to viewsPath
+
+// set static html src directory to serve
 app.use(express.static(publicDirectoryPath)) // use default index.html 
+
 //setup url endpoint 
 // send back json format
 
