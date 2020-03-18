@@ -65,6 +65,26 @@ app.get('/weather', (req, res)=>{
 //app.com/help
 //app.com/about
 
+// endpoint specific match any help/* endpoint will show specific message
+app.get('/help/*', (req, res)=>{
+    res.render('404', {
+        title: '404',
+        name: 'Johnson Chong',
+        errorMessage: 'Help article not found.' 
+    })
+
+})
+
+// handle all invalid url (response 404 page)
+app.get('*', (req, res) =>{
+    res.render('404', {
+        title: '404',
+        name: 'Johnson Chong',
+        errorMessage: 'Page not found.' 
+    })
+
+})
+
 app.listen(3000, ()=>{
     console.log('Server is up on port 3000.')
 })
