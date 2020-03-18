@@ -10,11 +10,14 @@ const app = express()
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public'); // provide default html path from current dir + target dir
-const viewsPath = path.join(__dirname, '../templates')
+const viewsPath = path.join(__dirname, '../templates/views')
+const partialPath = path.join(__dirname, '../templates/partials')
 
 // setup dynamic page with handlebars (views) and view location
 app.set('view engine', 'hbs')   // 
 app.set('views', viewsPath)   // bond the views(view engine) to viewsPath
+hbs.registerPartials(partialPath)
+
 
 // set static html src directory to serve
 app.use(express.static(publicDirectoryPath)) // use default index.html 
@@ -44,7 +47,8 @@ app.get('/help', (req, res)=>{
     // connect help.hbs page
     res.render('help', {
         title: 'Help',
-        helpText: 'This is some help Text'
+        helpText: 'This is some help Text',
+        name: 'Johnson Chong'
     })  
     
 })
