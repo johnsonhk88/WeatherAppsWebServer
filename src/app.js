@@ -54,16 +54,37 @@ app.get('/help', (req, res)=>{
 })
 
 app.get('/weather', (req, res)=>{
+    // get request query
+    if(!req.query.address) {
+        return res.send({
+            error: "You must provide address"
+        })
+    }
+
     // send back response with JSON 
     res.send({
         forecast:"Today is raining",
-        location: "Hong Kong"
+        location: "Hong Kong",
+        address: req.query.address  // get query address value
     }) //body
 })
 
-//app.com 
-//app.com/help
-//app.com/about
+app.get('/products', (req, res)=>{
+     // get request query
+    if(!req.query.search) {
+       return res.send({
+         error: "You must provide a search term"
+     })
+    }
+   
+    console.log(req.query.search)
+    //send back json
+    res.send({
+        products: []
+
+    })
+
+})
 
 // endpoint specific match any help/* endpoint will show specific message
 app.get('/help/*', (req, res)=>{
