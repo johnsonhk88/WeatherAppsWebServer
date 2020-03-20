@@ -1,6 +1,9 @@
 const express = require('express')
 const path = require('path')
 const hbs = require('hbs')
+// import geocode js and forecast js
+const geocode = require('./utils/geocode.js')
+const forecast = require('./utils/forecast.js')
 
 console.log(__dirname)
 //console.log(__filename)
@@ -61,12 +64,28 @@ app.get('/weather', (req, res)=>{
         })
     }
 
-    // send back response with JSON 
-    res.send({
-        forecast:"Today is raining",
-        location: "Hong Kong",
-        address: req.query.address  // get query address value
-    }) //body
+    // get geocode 
+    geocode(req.query.address, (error, {latitude, longitude, location})=>{
+        if(error) {
+            // send response with error
+            return res.send({error})
+        }
+        // forecast weather data 
+        forecast(longitude, latitude, (error, forecastData)=> {
+            if(error) {
+                // send response with error
+                return res.send({error})
+            }
+
+            // send back reponse with success weather 
+            res.send({
+                forecast: forecastData,
+                location,
+                address: req.query.address
+            })
+
+        })
+    })
 })
 
 app.get('/products', (req, res)=>{
