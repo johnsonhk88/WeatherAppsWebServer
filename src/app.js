@@ -42,7 +42,7 @@ app.get('', (req, res)=>{
 app.get('/about', (req, res)=>{
     // connect about.hbs page
       res.render('about', {
-        title: 'About Me',
+        title: 'About',
         name: 'Johnson Chong'
     })  
 })
