@@ -1,4 +1,7 @@
 const express = require('express')
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const dbConfig = require("./config/db.config");
 const path = require('path')
 const hbs = require('hbs')
 // import geocode js and forecast js
@@ -26,9 +29,42 @@ hbs.registerPartials(partialPath)
 // set static html src directory to serve
 app.use(express.static(publicDirectoryPath)) // use default index.html 
 
+
+//JWT and DB
+var corsOptions = {
+    origin: "http://localhost:8081"
+};
+  
+app.use(cors(corsOptions));
+  
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
+  
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const db = require("./dbmodels");
+  
+db.mongoose
+  .connect(`mongodb+srv://${dbConfig.USERNAME}:${dbConfig.PASSWORD}@${dbConfig.DB}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Successfully connect to MongoDB.");
+  })
+  .catch(err => {
+    console.error("Connection error", err);
+    process.exit();
+  });
+
+// routes
+require("./routes/auth.routes")(app);
+require("./routes/user.routes")(app);
+
+
 //setup url endpoint 
 // send back json format
-
 
 app.get('', (req, res)=>{
     // connect index.hbs page
