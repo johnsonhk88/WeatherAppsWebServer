@@ -1,22 +1,95 @@
 body {
-    color: #333333;
-    font-family: arial;
-    max-width: 650px;
-    margin: 0 auto;
-    padding: 0 16px;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    margin: 0 0% 0 0%;
 }
 
-.main-content {
-    flex-grow:  1;
+.title-navbar {
+    padding: 1% 5% 1%;
+    text-align: left;
+    font-size: 1.2rem;
+    /* background-color: #66BFBF; */
+}
+
+
+/* .main-content {
+    flex-grow: 1;
+} */
+
+.brief-weather {
+    position: relative;
+    padding: 4% 5% 4% 5%;
+}
+
+.location {
+    position: absolute;
+    /* Position the background text */
+    top: 15%;
+    left: 15%;
+    /* At the bottom. Use top:0 to append it to the top */
+    background: rgb(0, 0, 0);
+    /* Fallback color */
+    background: rgba(0, 0, 0, 0.5);
+    /* Black background with 0.5 opacity */
+    color: #f1f1f1;
+    /* Grey text */
+    width: 70%;
+    height: 10%;
+    /* Full width */
+    padding: 1% 10% 1% 10%;
+    /* Some padding */
+}
+
+.brief-weather .brief-weather-content {
+    position: absolute;
+    /* Position the background text */
+    top: 25%;
+    left: 30%;
+    /* At the bottom. Use top:0 to append it to the top */
+    background: rgb(0, 0, 0);
+    /* Fallback color */
+    background: rgba(0, 0, 0, 0.5);
+    /* Black background with 0.5 opacity */
+    color: #f1f1f1;
+    /* Grey text */
+    width: 40%;
+    height: 50%;
+    /* Full width */
+    padding: 15% 15% 15% 15%;
+    /* Some padding */
+    border-radius: 50% 50% 50% 50%;
+    margin: 2% 0;
+}
+
+.current-temp {
+    font-size: 5.5rem;
+    color: #12E90A;
+}
+
+.current-brief {
+    font-size: 3rem;
+}
+
+.brief-bd-img {
+    width: 100%;
+    height: auto;
+    padding: 2% 0%;
+}
+
+.detail-weather {
+    padding: 4% 5% 4% 5%;
+}
+
+.week-forecast {
+    padding: 4% 5% 4% 5%;
+}
+
+.weather-map {
+    padding: 4% 5% 4% 5%;
 }
 
 footer {
     color: #888888;
     border-top: 1px solid #eeeeee;
-    padding: 16px 0;
+    padding: 0px 5%;
     margin-top: 16px;
 }
 
@@ -31,18 +104,19 @@ h1 {
 }
 
 header a {
-    color:  #888888;
+    color: #888888;
     margin-right: 16px;
     text-decoration: none;
-    
 }
+
 header a hover {
     color: #534646;
-
 }
 
-.portrait {
-     width: 250px;
+.portrait-image {
+    width: 100%;
+    height: auto;
+    padding: 2% 0%;
 }
 
 input {
@@ -56,4 +130,8 @@ button {
     background: #888888;
     color: white;
     padding: 8px;
+}
+
+.about {
+    padding: 4% 5% 4% 5%;
 }

@@ -4,16 +4,16 @@ const cors = require("cors");
 const dbConfig = require("./config/db.config");
 const path = require('path')
 const hbs = require('hbs')
-// import geocode js and forecast js
+    // import geocode js and forecast js
 const geocode = require('./utils/geocode.js')
 const forecast = require('./utils/forecast.js')
 
 console.log(__dirname)
-//console.log(__filename)
+    //console.log(__filename)
 console.log(path.join(__dirname), '../public') // current directory find 
 
 const app = express()
-const port = process.env.PORT || 3000 // get HeroKu Port 
+const port = process.env.PORT // get HeroKu Port  
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public'); // provide default html path from current dir + target dir
@@ -21,8 +21,8 @@ const viewsPath = path.join(__dirname, '../templates/views')
 const partialPath = path.join(__dirname, '../templates/partials')
 
 // setup dynamic page with handlebars (views) and view location
-app.set('view engine', 'hbs')   // 
-app.set('views', viewsPath)   // bond the views(view engine) to viewsPath
+app.set('view engine', 'hbs') // 
+app.set('views', viewsPath) // bond the views(view engine) to viewsPath
 hbs.registerPartials(partialPath)
 
 
@@ -34,29 +34,29 @@ app.use(express.static(publicDirectoryPath)) // use default index.html
 var corsOptions = {
     origin: "http://localhost:8081"
 };
-  
+
 app.use(cors(corsOptions));
-  
+
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
-  
+
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = require("./dbmodels");
-  
+
 db.mongoose
-  .connect(`mongodb+srv://${dbConfig.USERNAME}:${dbConfig.PASSWORD}@${dbConfig.DB}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => {
-    console.log("Successfully connect to MongoDB.");
-  })
-  .catch(err => {
-    console.error("Connection error", err);
-    process.exit();
-  });
+    .connect(`mongodb+srv://${dbConfig.USERNAME}:${dbConfig.PASSWORD}@${dbConfig.DB}`, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    })
+    .then(() => {
+        console.log("Successfully connect to MongoDB.");
+    })
+    .catch(err => {
+        console.error("Connection error", err);
+        process.exit();
+    });
 
 // routes
 require("./routes/auth.routes")(app);
@@ -66,7 +66,7 @@ require("./routes/user.routes")(app);
 //setup url endpoint 
 // send back json format
 
-app.get('', (req, res)=>{
+app.get('', (req, res) => {
     // connect index.hbs page
     res.render('index', {
         title: 'Weather App',
@@ -75,66 +75,141 @@ app.get('', (req, res)=>{
 
 })
 
-app.get('/about', (req, res)=>{
+app.get('/about', (req, res) => {
     // connect about.hbs page
-      res.render('about', {
+    res.render('about', {
         title: 'About',
         name: 'Johnson Chong'
-    })  
+    })
 })
 
-app.get('/help', (req, res)=>{
+app.get('/help', (req, res) => {
     // connect help.hbs page
     res.render('help', {
         title: 'Help',
         helpText: 'This is some help Text',
         name: 'Johnson Chong'
-    })  
-    
+    })
+
 })
 
-app.get('/weather', (req, res)=>{
+app.get('/weather', (req, res) => {
     // get request query
-    if(!req.query.address) {
+    if (!req.query.address) {
         return res.send({
             error: "You must provide address"
         })
     }
 
     // get geocode 
-    geocode(req.query.address, (error, {latitude, longitude, location}={})=>{
-        if(error) {
+    geocode.geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
+        if (error) {
             // send response with error
-            return res.send({error})
+            return res.send({ error })
         }
         // forecast weather data 
-        forecast(longitude, latitude, (error, forecastData)=> {
-            if(error) {
+        forecast.forecast(longitude, latitude, (error, forecastData) => {
+            if (error) {
                 // send response with error
-                return res.send({error})
+                return res.send({ error })
             }
 
             // send back reponse with success weather 
             res.send({
-                forecast: forecastData,
-                location,
-                address: req.query.address
+                currently: forecastData.currently,
+                hourly: forecastData.hourly,
+                daily: forecastData.daily,
+                location
+                // address: req.query.address
             })
 
         })
     })
 })
 
-app.get('/products', (req, res)=>{
-     // get request query
-    if(!req.query.search) {
-       return res.send({
-         error: "You must provide a search term"
-     })
+app.get('/weatherGeolocate', (req, res) => {
+    // get request query
+    if (!req.query.latitude && !req.query.longitude) {
+        return res.send({
+            error: "You must provide latitude and longitued"
+        })
     }
-   
+
+    // get geocode 
+    geocode.RevserseGeocode(req.query.longitude, req.query.latitude, (error, { location } = {}) => {
+        if (error) {
+            // send response with error
+            return res.send({ error })
+        }
+        // forecast weather data 
+        forecast.forecast(req.query.longitude, req.query.latitude, (error, forecastData) => {
+            if (error) {
+                // send response with error
+                return res.send({ error })
+            }
+
+            // send back reponse with success weather 
+            res.send({
+                currently: forecastData.currently,
+                hourly: forecastData.hourly,
+                daily: forecastData.daily,
+                location
+                // address: req.query.address
+            })
+
+        })
+    })
+})
+
+app.get('/weatherGeolocateAll', (req, res) => {
+    // get request query
+    if (!req.query.latitude && !req.query.longitude) {
+        return res.send({
+            error: "You must provide latitude and longitued"
+        })
+    }
+
+    // get geocode 
+    geocode.RevserseGeocode(req.query.longitude, req.query.latitude, (error, { location } = {}) => {
+        if (error) {
+            // send response with error
+            return res.send({ error })
+        }
+        // forecast weather data 
+        forecast.forecastAllQuery(req.query.longitude, req.query.latitude, (error, forecastData) => {
+            if (error) {
+                // send response with error
+                return res.send({ error })
+            }
+            // console.log("Currently: ");
+            // console.log(forecastData.currently);
+            // console.log("hourly0: ");
+            // console.log(forecastData.hourly.data[0]);
+            // console.log("daily0: ");
+            // console.log(forecastData.daily.data[0]);
+            // send back reponse with success weather 
+            res.send({
+                currently: forecastData.currently,
+                hourly: forecastData.hourly,
+                daily: forecastData.daily,
+                location
+                // address: req.query.address
+            })
+
+        })
+    })
+})
+
+app.get('/products', (req, res) => {
+    // get request query
+    if (!req.query.search) {
+        return res.send({
+            error: "You must provide a search term"
+        })
+    }
+
     console.log(req.query.search)
-    //send back json
+        //send back json
     res.send({
         products: []
 
@@ -143,25 +218,25 @@ app.get('/products', (req, res)=>{
 })
 
 // endpoint specific match any help/* endpoint will show specific message
-app.get('/help/*', (req, res)=>{
+app.get('/help/*', (req, res) => {
     res.render('404', {
         title: '404',
         name: 'Johnson Chong',
-        errorMessage: 'Help article not found.' 
+        errorMessage: 'Help article not found.'
     })
 
 })
 
 // handle all invalid url (response 404 page)
-app.get('*', (req, res) =>{
+app.get('*', (req, res) => {
     res.render('404', {
         title: '404',
         name: 'Johnson Chong',
-        errorMessage: 'Page not found.' 
+        errorMessage: 'Page not found.'
     })
 
 })
 
-app.listen(port, ()=>{
+app.listen(port, () => {
     console.log('Server is up on port ' + port)
 })
