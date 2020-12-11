@@ -4,7 +4,10 @@ const search = document.querySelector('input')
     // const messageTwo = document.querySelector('#message-2')
 const msgCurrentTemp = document.querySelector('.current-temp')
 const msgLocName = document.querySelector(".location")
-const msgCurrentBrief = document.querySelector(".current-brief")
+const msgCurrentSummary = document.querySelector(".current-summary")
+const iconCurrentCond = document.querySelector(".current-cond-icon")
+const msgCurrentUVIndex = document.querySelector(".current-uv-index-val")
+const msgCurrentHumdity = document.querySelector(".current-humdity-val")
 
 
 weatherForm.addEventListener('submit', (event) => {
@@ -25,8 +28,11 @@ weatherForm.addEventListener('submit', (event) => {
                 // messageOne.textContent = data.location
                 // messageTwo.textContent = data.forecast
                 msgLocName.innerHTML = data.location;
-                msgCurrentTemp.innerHTML = data.currently.temperature + "&#176";
-                msgCurrentBrief.innerHTML = data.currently.summary;
+                msgCurrentTemp.innerHTML = Math.round(data.currently.temperature * 10) / 10 + "&#176";
+                msgCurrentSummary.innerHTML = data.currently.summary;
+                iconCurrentCond.src = "/img/" + data.currently.icon + ".png";
+                msgCurrentUVIndex.innerHTML = data.currently.uvIndex;
+                msgCurrentHumdity.innerHTML = data.currently.humidity * 100 + "%";
 
             }
 
@@ -61,8 +67,11 @@ function showPostion(position) {
                 // messageOne.textContent = data.location;
                 // messageTwo.textContent = data.currently.summary;
                 msgLocName.innerHTML = data.location;
-                msgCurrentTemp.innerHTML = data.currently.temperature + "&#176";
-                msgCurrentBrief.innerHTML = data.currently.summary;
+                msgCurrentTemp.innerHTML = Math.round(data.currently.temperature * 10) / 10 + "&#176";
+                msgCurrentSummary.innerHTML = data.currently.summary;
+                iconCurrentCond.src = "/img/" + data.currently.icon + ".png";
+                msgCurrentUVIndex.innerHTML = data.currently.uvIndex;
+                msgCurrentHumdity.innerHTML = data.currently.humidity * 100 + "%";
             }
 
 

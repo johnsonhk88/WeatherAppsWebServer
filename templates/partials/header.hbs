@@ -1,12 +1,37 @@
 <header>
-    <div class="title-navbar nav">
-    <h1>{{title}}</h1>
-    <a href='/'>Local</a>
-    <a href="#brief-weather">Current</a>
-    <a href="#detail-weather">Detail</a>
-     <a href="#forecast-weather">Five-Days</a>
-     <a href="#weather-map">Weather Map</a>
-    <a href='#about'>About</a>
-    <a href='/login'>Login</a>
+    <div class="title-navbar navbar navbar-expand-lg navbar-dark">
+    <h1 class="title-brand navbar-brand">{{title}}</h1>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+      <form class="search-city">
+                <input type="text" placeholder="Location">
+                <button>Search</button>
+            </form> <!-- Weather query form   -->           
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a href='/'>Local</a>
+            </li>
+            <li class="nav-item">
+                <a href="#brief-weather">Current</a>
+            </li>
+            <li class="nav-item">
+                <a href="#detail-weather">Detail</a>
+            </li>
+            <li class="nav-item">
+                <a href="#forecast-weather">5-Days</a>
+             </li>
+            <li class="nav-item">
+                <a href="#weather-map">Map</a>
+             </li>
+            <li class="nav-item">
+                <a href='#about'>About</a>
+            </li>
+            <li class="nav-item">
+                <a href='/login'>Login</a>
+            </li>
+        </ul>  
+    </div>
     </div> 
 </header>

@@ -1,12 +1,46 @@
+/*
+https://colorhunt.co/palette/15830
+*/
+
 body {
     margin: 0 0% 0 0%;
 }
 
+header {
+    /* margin-top: 16px; */
+    /* margin-bottom: 48px; */
+}
+
+header a {
+    color: #f5eeee;
+    margin-right: 16px;
+    text-decoration: none;
+}
+
+header a hover {
+    color: #534646;
+}
+
+h1 {
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+.title-brand {
+    margin: 0;
+    font-size: 3rem;
+}
+
 .title-navbar {
-    padding: 1% 5% 1%;
+    margin: 0, 0, 0, 0;
+    padding: 1% 1% 1%;
     text-align: left;
     font-size: 1.2rem;
-    /* background-color: #66BFBF; */
+    background-color: #364f6b;
+}
+
+.search-city {
+    padding-left: 2%;
 }
 
 
@@ -14,15 +48,24 @@ body {
     flex-grow: 1;
 } */
 
-.brief-weather {
-    position: relative;
-    padding: 4% 5% 4% 5%;
+.brief-bd-img {
+    width: 100%;
+    padding: 0% 0%;
+}
+
+
+/* display location */
+
+.humdity-icon {
+    width: 20%;
+    height: auto;
+    margin: 50% 30% 1% 30%;
 }
 
 .location {
     position: absolute;
     /* Position the background text */
-    top: 15%;
+    top: 0%;
     left: 15%;
     /* At the bottom. Use top:0 to append it to the top */
     background: rgb(0, 0, 0);
@@ -38,11 +81,20 @@ body {
     /* Some padding */
 }
 
+.brief-weather {
+    position: relative;
+    max-width: 100%;
+    height: auto;
+    padding: 0% 0% 0% 0%;
+    background-image: url("/img/wallpaper1.jpg");
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 100%;
+}
+
 .brief-weather .brief-weather-content {
-    position: absolute;
     /* Position the background text */
-    top: 25%;
-    left: 30%;
+    /* position: absolute; */
     /* At the bottom. Use top:0 to append it to the top */
     background: rgb(0, 0, 0);
     /* Fallback color */
@@ -50,32 +102,45 @@ body {
     /* Black background with 0.5 opacity */
     color: #f1f1f1;
     /* Grey text */
-    width: 40%;
-    height: 50%;
-    /* Full width */
-    padding: 15% 15% 15% 15%;
+    /* width: 30%;
+    height: 10%; */
+    /* Full width text  */
+    padding: 3% 15% 3% 15%;
     /* Some padding */
     border-radius: 50% 50% 50% 50%;
-    margin: 2% 0;
+    margin: 10% 0;
 }
 
 .current-temp {
-    font-size: 5.5rem;
+    font-size: 5rem;
     color: #12E90A;
 }
 
-.current-brief {
-    font-size: 3rem;
+.temp-icon {
+    width: 80%;
+    height: auto;
 }
 
-.brief-bd-img {
-    width: 100%;
-    height: auto;
-    padding: 2% 0%;
+.current-summary {
+    font-size: 2rem;
 }
 
 .detail-weather {
     padding: 4% 5% 4% 5%;
+}
+
+.current-humdity-val {
+    margin: 1% 30% 30% 30%;
+    color: #12E90A;
+}
+
+.current-uv-index {
+    margin: 50% 30% 2% 30%;
+}
+
+.current-uv-index-val {
+    margin: 1% 30% 30% 30%;
+    color: #12E90A;
 }
 
 .week-forecast {
@@ -89,34 +154,21 @@ body {
 footer {
     color: #888888;
     border-top: 1px solid #eeeeee;
-    padding: 0px 5%;
+    padding: 10px 5%;
     margin-top: 16px;
-}
-
-header {
-    margin-top: 16px;
-    margin-bottom: 48px;
-}
-
-h1 {
-    font-size: 64px;
-    margin-bottom: 16px;
-}
-
-header a {
-    color: #888888;
-    margin-right: 16px;
-    text-decoration: none;
-}
-
-header a hover {
-    color: #534646;
+    margin-bottom: 0;
+    background: #3fc1c9;
 }
 
 .portrait-image {
     width: 100%;
     height: auto;
-    padding: 2% 0%;
+    margin: 0 0 0 0;
+    padding: 2% 0% 0%;
+}
+
+.about {
+    padding: 0% 0% 0% 0%;
 }
 
 input {
@@ -130,8 +182,4 @@ button {
     background: #888888;
     color: white;
     padding: 8px;
-}
-
-.about {
-    padding: 4% 5% 4% 5%;
 }
