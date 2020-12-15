@@ -17,26 +17,29 @@
     <body>
         {{>header}}
         <div class="brief-weather container-fluid"> 
-             <h2 class="location">Loc:</h2>
+            <div class="">
+                <h2 class="location">Loc:</h2>
+             </div>
              <div class="row">
-                 <div class="col-sm-4 current-humdity-content">
+                 <div class="col-lg-4 col-md-6 col-sm-12 current-humdity-content">
                         <h1 class= "current-humdity"></h1>
                         <img class="humdity-icon" src="/img/humdity-icon.png">
                         <h3 class="current-humdity-val"></h3>
                  </div> 
 
 
-                 <div class="col-sm-4 brief-weather-content">
-                        <img class="current-cond-icon" src="" alt="weather icon">
+                 <div class="col-lg-4 col-md-6 col-sm-12 brief-weather-content">
+                        
                         <h1 class="current-temp">Temp:</h1>
                         <img class="temp-icon" src="/img/norm_temperture_icon.png">
                         <h3 class="current-summary">Condition:</h3>
+                        <img class="current-cond-icon" src="" alt="weather icon">
 
                 </div>
 
-                 <div class="col-sm-4 current-uv-index-contnet">
+                 <div class="col-lg-4 col-md-6 col-sm-12 current-uv-index-contnet">
 
-                        <h2 class="current-uv-index">UV Index</h2>
+                        <img class="current-uv-index-img" src="/img/uv-index.png">
                         <h3 class="current-uv-index-val"></h3>
 
                  </div> 

@@ -27,7 +27,7 @@ weatherForm.addEventListener('submit', (event) => {
             } else {
                 // messageOne.textContent = data.location
                 // messageTwo.textContent = data.forecast
-                msgLocName.innerHTML = data.location;
+                msgLocName.innerHTML = "Current Weather: &nbsp   &nbsp   &nbsp  " + data.location;
                 msgCurrentTemp.innerHTML = Math.round(data.currently.temperature * 10) / 10 + "&#176";
                 msgCurrentSummary.innerHTML = data.currently.summary;
                 iconCurrentCond.src = "/img/" + data.currently.icon + ".png";
@@ -66,12 +66,12 @@ function showPostion(position) {
             } else {
                 // messageOne.textContent = data.location;
                 // messageTwo.textContent = data.currently.summary;
-                msgLocName.innerHTML = data.location;
+                msgLocName.innerHTML = "Current Weather   &nbsp &nbsp &nbsp" + data.location + "&nbsp &nbsp &nbsp &nbsp Time: " + getTimeNow();
                 msgCurrentTemp.innerHTML = Math.round(data.currently.temperature * 10) / 10 + "&#176";
-                msgCurrentSummary.innerHTML = data.currently.summary;
                 iconCurrentCond.src = "/img/" + data.currently.icon + ".png";
                 msgCurrentUVIndex.innerHTML = data.currently.uvIndex;
                 msgCurrentHumdity.innerHTML = data.currently.humidity * 100 + "%";
+
             }
 
 
@@ -86,7 +86,25 @@ function showPostion(position) {
 
     })
 
+    function timeCovert(t) {
+        var datetime = new Date();
+        datetime.setTime(t);
+        var year = datetime.getFullYear();
+        var month = datetime.getMonth();
+        var date = datetime.getDate();
+        var hr = datetime.getHours();
+        var mm = datetime.getMinutes();
+        var ss = datetime.getSeconds();
+        return year + "-" + month + "-" + date + " " + hour + ":" + mm + ":" + ss;
 
+    }
+
+    function getTimeNow() {
+        var today = new Date();
+        var date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        return date + " " + time;
+    }
 
 
 

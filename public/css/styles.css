@@ -56,17 +56,11 @@ h1 {
 
 /* display location */
 
-.humdity-icon {
-    width: 20%;
-    height: auto;
-    margin: 50% 30% 1% 30%;
-}
-
 .location {
     position: absolute;
     /* Position the background text */
     top: 0%;
-    left: 15%;
+    left: 0%;
     /* At the bottom. Use top:0 to append it to the top */
     background: rgb(0, 0, 0);
     /* Fallback color */
@@ -74,11 +68,12 @@ h1 {
     /* Black background with 0.5 opacity */
     color: #f1f1f1;
     /* Grey text */
-    width: 70%;
+    width: 100%;
     height: 10%;
     /* Full width */
-    padding: 1% 10% 1% 10%;
+    padding: 1% 2% 1% 2%;
     /* Some padding */
+    margin: 0% 0% 0% 0%;
 }
 
 .brief-weather {
@@ -92,11 +87,18 @@ h1 {
     background-size: 100%;
 }
 
+.brief-weather .current-humdity-content {
+    /* background: rgb(0, 0, 0);*/
+    /* Fallback color */
+    /* background: rgba(0, 0, 0, 0.5); */
+    max-width: 30%;
+    /* margin: 5% 5%; */
+}
+
 .brief-weather .brief-weather-content {
     /* Position the background text */
     /* position: absolute; */
     /* At the bottom. Use top:0 to append it to the top */
-    background: rgb(0, 0, 0);
     /* Fallback color */
     background: rgba(0, 0, 0, 0.5);
     /* Black background with 0.5 opacity */
@@ -105,41 +107,64 @@ h1 {
     /* width: 30%;
     height: 10%; */
     /* Full width text  */
-    padding: 3% 15% 3% 15%;
+    max-width: 100%;
+    padding: 0% 0% 10% 0%;
     /* Some padding */
     border-radius: 50% 50% 50% 50%;
-    margin: 10% 0;
+    margin: 8% 0% 5% 0%;
 }
 
 .current-temp {
-    font-size: 5rem;
+    display: inline-block;
+    font-size: 5.5rem;
     color: #12E90A;
+    margin: 20% 3% 0% 30%;
 }
 
 .temp-icon {
-    width: 80%;
+    display: inline-block;
+    width: 15%;
     height: auto;
+    margin: 0% 0% 0% 1%;
 }
 
 .current-summary {
     font-size: 2rem;
+    margin: 1% 0% 0% 30%;
+}
+
+.current-cond-icon {
+    display: inline-block;
+    width: 20%;
+    height: auto;
+    margin: 5% 5% 0% 30%;
 }
 
 .detail-weather {
     padding: 4% 5% 4% 5%;
 }
 
+.humdity-icon {
+    display: inline-block;
+    width: 30%;
+    height: auto;
+    margin: 50% 30% 1% 30%;
+}
+
 .current-humdity-val {
-    margin: 1% 30% 30% 30%;
+    display: inline-block;
+    margin: 1% 30% 30% 40%;
     color: #12E90A;
 }
 
-.current-uv-index {
+.current-uv-index-img {
+    width: 20%;
+    height: auto;
     margin: 50% 30% 2% 30%;
 }
 
 .current-uv-index-val {
-    margin: 1% 30% 30% 30%;
+    margin: 1% 30% 30% 40%;
     color: #12E90A;
 }
 
