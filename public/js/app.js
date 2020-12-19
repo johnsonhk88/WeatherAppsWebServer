@@ -1,22 +1,23 @@
 const weatherForm = document.querySelector('form')
 const search = document.querySelector('input')
-    // const messageOne = document.querySelector('#message-1')
-    // const messageTwo = document.querySelector('#message-2')
 const msgCurrentTemp = document.querySelector('.current-temp')
 const msgLocName = document.querySelector(".location")
 const msgCurrentSummary = document.querySelector(".current-summary")
 const iconCurrentCond = document.querySelector(".current-cond-icon")
 const msgCurrentUVIndex = document.querySelector(".current-uv-index-val")
 const msgCurrentHumdity = document.querySelector(".current-humdity-val")
-
+const msgCurrentDew = document.querySelector(".current-dew-val")
+const msgCurrentWindGust = document.querySelector(".current-windgust-val")
+const msgCurrentWindSpeed = document.querySelector(".current-windspeed-val")
+const msgCurrentWindBearing = document.querySelector(".current-windbearing-val")
+const msgCurrentCloudCover = document.querySelector(".current-cloudcover-val")
+const msgCurrentVisibility = document.querySelector(".current-visibility-val")
+const msgCurrentPressure = document.querySelector(".current-pressure-val")
 
 weatherForm.addEventListener('submit', (event) => {
     event.preventDefault()
         // form input value
     const location = search.value
-
-    // messageOne.textContent = 'Loading...' // clear output message
-    // messageTwo.textContent = '' // clear output message
 
     fetch('/weather?address=' + location).then((response) => {
 
@@ -25,14 +26,18 @@ weatherForm.addEventListener('submit', (event) => {
             if (data.error) {
                 messageOne.textContent = data.error
             } else {
-                // messageOne.textContent = data.location
-                // messageTwo.textContent = data.forecast
-                msgLocName.innerHTML = "Current Weather: &nbsp   &nbsp   &nbsp  " + data.location;
+                msgLocName.innerHTML = "Current Weather: &nbsp &nbsp &nbsp" + data.location;
                 msgCurrentTemp.innerHTML = Math.round(data.currently.temperature * 10) / 10 + "&#176";
                 msgCurrentSummary.innerHTML = data.currently.summary;
                 iconCurrentCond.src = "/img/" + data.currently.icon + ".png";
                 msgCurrentUVIndex.innerHTML = data.currently.uvIndex;
-                msgCurrentHumdity.innerHTML = data.currently.humidity * 100 + "%";
+                msgCurrentHumdity.innerHTML = Math.round(data.currently.humidity * 100) + "%";
+                msgCurrentWindGust.innerHTML = data.currently.windGust + " m/s";
+                msgCurrentWindSpeed.innerHTML = data.currently.windSpeed + " m/s";
+                msgCurrentWindBearing.innerHTML = data.currently.windBearing + "&#176 " + degToCompass(data.currently.windBearing);
+                msgCurrentCloudCover.innerHTML = Math.round(data.currently.cloudCover * 100) + "%";
+                msgCurrentVisibility.innerHTML = Math.round(data.currently.visibility * 10) / 10 + " km";
+                msgCurrentPressure.innerHTML = Math.round(data.currently.pressure) + " hPa";
 
             }
 
@@ -64,20 +69,19 @@ function showPostion(position) {
             if (data.error) {
                 messageOne.textContent = data.error
             } else {
-                // messageOne.textContent = data.location;
-                // messageTwo.textContent = data.currently.summary;
                 msgLocName.innerHTML = "Current Weather   &nbsp &nbsp &nbsp" + data.location + "&nbsp &nbsp &nbsp &nbsp Time: " + getTimeNow();
                 msgCurrentTemp.innerHTML = Math.round(data.currently.temperature * 10) / 10 + "&#176";
+                msgCurrentSummary.innerHTML = data.currently.summary;
                 iconCurrentCond.src = "/img/" + data.currently.icon + ".png";
                 msgCurrentUVIndex.innerHTML = data.currently.uvIndex;
-                msgCurrentHumdity.innerHTML = data.currently.humidity * 100 + "%";
-
+                msgCurrentHumdity.innerHTML = Math.round(data.currently.humidity * 100) + "%";
+                msgCurrentWindGust.innerHTML = data.currently.windGust + " m/s";
+                msgCurrentWindSpeed.innerHTML = data.currently.windSpeed + " m/s";
+                msgCurrentWindBearing.innerHTML = data.currently.windBearing + "&#176  " + degToCompass(data.currently.windBearing);
+                msgCurrentCloudCover.innerHTML = Math.round(data.currently.cloudCover * 100) + "%";
+                msgCurrentVisibility.innerHTML = Math.round(data.currently.visibility * 10) / 10 + " km";
+                msgCurrentPressure.innerHTML = Math.round(data.currently.pressure) + " hPa";
             }
-
-
-
-
-
 
 
         })
@@ -107,7 +111,12 @@ function showPostion(position) {
     }
 
 
+    function degToCompass(num) {
+        var directIndex = Math.floor((num / 22.5) + 0.5);
+        var directArr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+        return directArr[(directIndex % 16)];
 
+    }
 
 
 

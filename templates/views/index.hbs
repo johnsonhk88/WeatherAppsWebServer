@@ -16,44 +16,86 @@
 
     <body>
         {{>header}}
-        <div class="brief-weather container-fluid"> 
+        <div class="current-weather container-fluid"> 
             <div class="">
                 <h2 class="location">Loc:</h2>
              </div>
-             <div class="row">
-                 <div class="col-lg-4 col-md-6 col-sm-12 current-humdity-content">
-                        <h1 class= "current-humdity"></h1>
-                        <img class="humdity-icon" src="/img/humdity-icon.png">
-                        <h3 class="current-humdity-val"></h3>
-                 </div> 
+            <div id="current-weather-carousel" class="carousel slide" data-ride="false" data-interval="10000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active container-fluid">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12 current-humdity-content">
+                                <img class="humdity-icon" src="/img/humdity-icon.png">
+                                <h3 class="current-humdity-val"></h3>
+                            </div> 
+                            <div class="col-lg-4 col-md-6 col-sm-12 current-weather-content">
 
+                                <h1 class="current-temp">Temp:</h1>
+                                <img class="temp-icon" src="/img/norm_temperture_icon.png">
+                                <h3 class="current-summary">Condition:</h3>
+                                <img class="current-cond-icon" src="" alt="weather icon">
 
-                 <div class="col-lg-4 col-md-6 col-sm-12 brief-weather-content">
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 current-uv-index-content">
+
+                                <img class="current-uv-index-img" src="/img/uv-index.png">
+                                <h3 class="current-uv-index-val"></h3>
+
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="carousel-item container-fluid">
+                         <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12 current-windspeed-content">
+                                <h2 class="current-windspeed-title">Wind Speed</h2>
+                                 <img class="current-windspeed-img" src="/img/windspeed.png">
+                                <h3 class="current-windspeed-val"></h3>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-12 current-windgust-content">
+                                 <h2 class="current-windgust-title">Wind Gust</h2>
+                                  <img class="current-windgust-img" src="/img/windgust.png">
+                                <h3 class="current-windgust-val"></h3>
+                            </div> 
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 current-windbearing-content">
+                                 <h2 class="current-windbearing-title">Wind Bearing</h2>
+                                 <img class="current-windbearing-img" src="/img/windbearing.png">
+                                <h3 class="current-windbearing-val"></h3>
+                            </div> 
+
+                             <div class="col-lg-4 col-md-6 col-sm-12 current-cloudcover-content">
+                                 <h2 class="current-cloudcover-title">Cloud Cover</h2>
+                                  <img class="current-cloudcover-img" src="/img/cloudcover.png">
+                                <h3 class="current-cloudcover-val"></h3>
+                            </div> 
+
+                               <div class="col-lg-4 col-md-6 col-sm-12 current-visibility-content">
+                                 <h2 class="current-visibility-title">Visibility</h2>
+                                 <img class="current-visibility-img" src="/img/visibility.png">
+                                <h3 class="current-visibility-val"></h3>
+                            </div> 
+                               <div class="col-lg-4 col-md-6 col-sm-12 current-pressure-content">
+                                 <h2 class="current-pressure-title">Pressure</h2>
+                                  <img class="current-pressure-img" src="/img/pressure.jpg">
+                                <h3 class="current-pressure-val"></h3>
+                            </div> 
+                         </div>
                         
-                        <h1 class="current-temp">Temp:</h1>
-                        <img class="temp-icon" src="/img/norm_temperture_icon.png">
-                        <h3 class="current-summary">Condition:</h3>
-                        <img class="current-cond-icon" src="" alt="weather icon">
-
+                    </div>
                 </div>
-
-                 <div class="col-lg-4 col-md-6 col-sm-12 current-uv-index-contnet">
-
-                        <img class="current-uv-index-img" src="/img/uv-index.png">
-                        <h3 class="current-uv-index-val"></h3>
-
-                 </div> 
+                <a class="carousel-control-prev" href="#current-weather-carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#current-weather-carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+                </a>
             </div>
 
         </div>
 
-        <div id="detail-weather" class="detail-weather">
-              <h1>Detail Weather</h1>      
-        </div>
-
         <div id="forecast-weather" class="week-forecast">
                 <h1>Forecast Wether</h1>
-
+                <img class="portrait-image" src='/img/new-history-forecast-bulk.png'>
         </div>
         
         <div id="weather-map" class="weather-map">
@@ -61,14 +103,6 @@
                 <h1>Map</h1>
 
         </div>
-        
-        <div id="about" class="about">
-            <h1>About</h1>
-
-             <p>This stie was created by {{name}}. It uses data from mapbox.com and darksky.net</p>
-            <img class="portrait-image" src='/img/new-history-forecast-bulk.png'>
-        </div>
-
         {{>footer}}
         <script src="/js/app.js"></script>
     </body>

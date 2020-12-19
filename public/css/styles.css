@@ -48,10 +48,11 @@ h1 {
     flex-grow: 1;
 } */
 
-.brief-bd-img {
+
+/* .brief-bd-img {
     width: 100%;
     padding: 0% 0%;
-}
+} */
 
 
 /* display location */
@@ -71,15 +72,16 @@ h1 {
     width: 100%;
     height: 10%;
     /* Full width */
-    padding: 1% 2% 1% 2%;
+    padding: 0% 0% 0% 0%;
     /* Some padding */
     margin: 0% 0% 0% 0%;
+    font-size: 2rem;
 }
 
-.brief-weather {
+.current-weather {
     position: relative;
     max-width: 100%;
-    height: auto;
+    height: 30%;
     padding: 0% 0% 0% 0%;
     background-image: url("/img/wallpaper1.jpg");
     background-repeat: no-repeat;
@@ -87,7 +89,7 @@ h1 {
     background-size: 100%;
 }
 
-.brief-weather .current-humdity-content {
+.current-weather .current-humdity-content {
     /* background: rgb(0, 0, 0);*/
     /* Fallback color */
     /* background: rgba(0, 0, 0, 0.5); */
@@ -95,7 +97,7 @@ h1 {
     /* margin: 5% 5%; */
 }
 
-.brief-weather .brief-weather-content {
+.current-weather .current-weather-content {
     /* Position the background text */
     /* position: absolute; */
     /* At the bottom. Use top:0 to append it to the top */
@@ -140,46 +142,96 @@ h1 {
     margin: 5% 5% 0% 30%;
 }
 
-.detail-weather {
+
+/* .detail-weather {
     padding: 4% 5% 4% 5%;
-}
+    background-color: #f5f5f5;
+} */
 
 .humdity-icon {
-    display: inline-block;
     width: 30%;
     height: auto;
-    margin: 50% 30% 1% 30%;
+    margin: 60% 20% 1% 35%;
 }
 
 .current-humdity-val {
     display: inline-block;
-    margin: 1% 30% 30% 40%;
+    margin: 1% 30% 30% 42%;
     color: #12E90A;
 }
 
 .current-uv-index-img {
     width: 20%;
     height: auto;
-    margin: 50% 30% 2% 30%;
+    margin: 60% 20% 1% 35%;
 }
 
 .current-uv-index-val {
-    margin: 1% 30% 30% 40%;
+    margin: 1% 30% 30% 42%;
+    color: #12E90A;
+}
+
+.current-windspeed-content {
+    /* max-width: 30%; */
+    /* margin: 5% 5%; */
+}
+
+.current-windspeed-content,
+.current-windgust-content,
+.current-windbearing-content,
+.current-cloudcover-content,
+.current-visibility-content,
+.current-pressure-content {
+    /* At the bottom. Use top:0 to append it to the top */
+    background: rgb(0, 0, 0);
+    /* Fallback color */
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.current-windspeed-title,
+.current-windgust-title,
+.current-windbearing-title,
+.current-cloudcover-title,
+.current-visibility-title,
+.current-pressure-title {
+    color: #f1f1f1;
+    font-size: 2.3rem;
+    margin: 15% 0% 2% 32%;
+}
+
+.current-windspeed-img,
+.current-windgust-img,
+.current-windbearing-img,
+.current-cloudcover-img,
+.current-visibility-img,
+.current-pressure-img {
+    width: 35%;
+    height: auto;
+    margin: 3% 30% 2% 30%;
+}
+
+.current-windspeed-val,
+.current-windgust-val,
+.current-windbearing-val,
+.current-cloudcover-val,
+.current-visibility-val,
+.current-pressure-val {
+    margin: 1% 0% 0% 40%;
     color: #12E90A;
 }
 
 .week-forecast {
-    padding: 4% 5% 4% 5%;
+    padding: 0% 0% 0% 0%;
 }
 
 .weather-map {
-    padding: 4% 5% 4% 5%;
+    padding: 0% 0% 0% 0%;
 }
 
 footer {
     color: #888888;
     border-top: 1px solid #eeeeee;
-    padding: 10px 5%;
+    padding: 10px 0%;
     margin-top: 16px;
     margin-bottom: 0;
     background: #3fc1c9;
@@ -192,9 +244,10 @@ footer {
     padding: 2% 0% 0%;
 }
 
-.about {
+
+/* .about {
     padding: 0% 0% 0% 0%;
-}
+} */
 
 input {
     border: 1px solid #cccccc;
