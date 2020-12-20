@@ -17,17 +17,6 @@ const forecast = (longitude, latitude, callback) => {
             // console.log('Error code:'+ response.body.error)
             callback('Unable find location', undefined); // pass error
         } else {
-            // console.log("TimeZone: " + body.getTimeZone);
-            // console.log("latitude: " + body.latitude);
-            // console.log("longitude: " + body.longitude);
-            // console.log("Daily0: ");
-            // console.log(body.daily.data[0]);
-            // console.log("Num Of Days: ");
-            // console.log(body.daily.data.length);
-            // console.log("Currently: ");
-            // console.log(body.currently);
-            // console.log("hourly0: ");
-            // console.log("hours: " + body.hourly.data.length);
             // console.log(body.hourly.data[0]);
             // body.daily.data[0].summary + ' It is currently ' + body.currently.temperature +
             // ' degree out. This high today is ' + body.daily.data[0].temperatureHigh + ' with a low of ' + body.daily.data[0].temperatureLow + '. There is a ' + body.currently.precipProbability +
@@ -61,14 +50,6 @@ const forecastAllQuery = (longitude, latitude, callback) => {
             // console.log('Error code:'+ response.body.error)
             callback('Unable find location', undefined); // pass error
         } else {
-            // console.log("TimeZone: " + body.timeZone);
-            // console.log("Time: " + body.time);
-            // console.log("Currently: ");
-            // console.log(body.currently);
-            // console.log("Daily 0: ");
-            // console.log(body.daily.data[0]);
-            // console.log("Num Of Days: ");
-            // console.log(body.daily.data.length);
             callback(undefined, {
                 // timeZone: body.timeZone,
                 // time: body.time,
@@ -80,6 +61,14 @@ const forecastAllQuery = (longitude, latitude, callback) => {
     })
 
 
+}
+
+function timeStampToDate(t) {
+
+    var milliseconds = t * 1000;
+    var dateObject = new Date(milliseconds);
+
+    return dateObject.toLocaleString();
 }
 
 

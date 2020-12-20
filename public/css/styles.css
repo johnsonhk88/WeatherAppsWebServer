@@ -26,6 +26,19 @@ h1 {
     margin-bottom: 16px;
 }
 
+input {
+    border: 1px solid #cccccc;
+    padding: 8px;
+}
+
+button {
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #888888;
+    color: white;
+    padding: 8px;
+}
+
 .title-brand {
     margin: 0;
     font-size: 3rem;
@@ -221,7 +234,67 @@ h1 {
 }
 
 .week-forecast {
-    padding: 0% 0% 0% 0%;
+    padding: 0% 0% 0% 10%;
+    background-image: url("/img/new-history-forecast-bulk.png");
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 100%;
+    width: 100%;
+    height: auto;
+}
+
+.forecast-title {
+    position: absolute;
+    left: 0%;
+    width: 100%;
+    height: auto;
+    background: rgb(0, 0, 0);
+    /* Fallback color */
+    background: rgba(0, 0, 0, 0.3);
+    color: #f1f1f1;
+    font-size: 2.4rem;
+    padding-left: 10%;
+}
+
+.forecast-card {
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.forecast-today-cond-icon,
+.forecast-2nd-cond-icon,
+.forecast-3rd-cond-icon,
+.forecast-4th-cond-icon,
+.forecast-5th-cond-icon {
+    margin: 0% 20% 0% 20%;
+    width: 60%;
+    height: auto;
+}
+
+.forecast-today-low-high-temp,
+.forecast-2nd-low-high-temp,
+.forecast-3rd-low-high-temp,
+.forecast-4th-low-high-temp,
+.forecast-5th-low-high-temp,
+.forecast-today-humdity,
+.forecast-2nd-humdity,
+.forecast-3rd-humdity,
+.forecast-4th-humdity,
+.forecast-5th-humdity {
+    display: inline-block;
+    margin: 0% 0% 0% 15%;
+    /* width: 80%; */
+}
+
+.temp-icon-sm {
+    width: 12%;
+    height: auto;
+}
+
+.humdity-icon-sm {
+    display: inline-block;
+    width: 18%;
+    height: auto;
 }
 
 .weather-map {
@@ -237,27 +310,7 @@ footer {
     background: #3fc1c9;
 }
 
-.portrait-image {
-    width: 100%;
-    height: auto;
-    margin: 0 0 0 0;
-    padding: 2% 0% 0%;
-}
-
 
 /* .about {
     padding: 0% 0% 0% 0%;
 } */
-
-input {
-    border: 1px solid #cccccc;
-    padding: 8px;
-}
-
-button {
-    cursor: pointer;
-    border: 1px solid #888888;
-    background: #888888;
-    color: white;
-    padding: 8px;
-}
