@@ -4,6 +4,7 @@ const cors = require("cors");
 const dbConfig = require("./config/db.config");
 const path = require('path')
 const hbs = require('hbs')
+const fetch = require('node-fetch')
     // import geocode js and forecast js
 const geocode = require('./utils/geocode.js')
 const forecast = require('./utils/forecast.js')
@@ -73,6 +74,93 @@ app.get('', (req, res) => {
         name: 'Johnson Chong'
     })
 
+})
+
+app.get('/login', (req, res) => {
+    if (!req.query.username || !req.query.password) {
+        return res.send({
+            error: "You must provide login name and password"
+        })
+    }
+
+    fetch('http://localhost:'+process.env.PORT+'/api/signin', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: req.query.username,
+            password: req.query.password
+        })
+    }).then((response) => {
+        response.json().then((data) => {
+            if (!res.status(200)) {
+                console.log(data.message);
+                return res.send({
+                    error: data.message
+                })
+            } else {
+                //console.log(data.accessToken);
+                    res.send({
+                    accessToken: data.accessToken,
+                    background: data.background,
+                    username: data.username
+                })
+            }
+        })
+    })
+})
+
+app.get('/checkSession', (req, res) => {
+
+    fetch('http://localhost:'+process.env.PORT+'/api/loginedPage', {
+        method: 'GET',
+        headers: {
+            'x-access-token': req.query.accessToken
+        }
+    }).then((response) => {
+        response.json().then((data) => {
+            if (!res.status(200)) {
+                console.log(data.message);
+                return res.send({
+                    error: data.message
+                })
+            } else {
+                //console.log(data.background);
+                    res.send({
+                    username: data.username,
+                    background: data.background
+                })
+            }
+        })
+    })
+    
+})
+
+app.get('/changeTheme', (req, res) => {
+
+    fetch('http://localhost:'+process.env.PORT+'/api/changeTheme?background='+req.query.background, {
+        method: 'GET',
+        headers: {
+            'x-access-token': req.query.accessToken
+        }
+    }).then((response) => {
+        response.json().then((data) => {
+            if (!res.status(200)) {
+                console.log(data.message);
+                return res.send({
+                    error: data.message
+                })
+            } else {
+                //console.log(data.background);
+                    res.send({
+                    username: data.username,
+                    background: data.background
+                })
+            }
+        })
+    })
+    
 })
 
 app.get('/about', (req, res) => {

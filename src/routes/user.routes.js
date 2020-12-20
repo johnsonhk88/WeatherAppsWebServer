@@ -10,7 +10,7 @@ module.exports = function(app) {
     next();
   });
 
-  app.get("/api/normalPage", controller.normalPage);
+  app.get("/api/changeTheme", [authJwt.verifyToken], controller.changeTheme);
   
   app.get("/api/loginedPage", [authJwt.verifyToken], controller.loginedPage);
 
