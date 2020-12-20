@@ -47,7 +47,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./dbmodels");
 
 db.mongoose
-    .connect(`mongodb+srv://${dbConfig.USERNAME}:${dbConfig.PASSWORD}@${dbConfig.DB}`, {
+    .connect(`mongodb+srv://${dbConfig.USERNAME}:${dbConfig.PASSWORD}@${dbConfig.DB}?retryWrites=true&w=majority`, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
@@ -104,7 +104,8 @@ app.get('/login', (req, res) => {
                     res.send({
                     accessToken: data.accessToken,
                     background: data.background,
-                    username: data.username
+                    username: data.username,
+                    error: data.message
                 })
             }
         })
@@ -129,7 +130,8 @@ app.get('/checkSession', (req, res) => {
                 //console.log(data.background);
                     res.send({
                     username: data.username,
-                    background: data.background
+                    background: data.background,
+                    error: data.message
                 })
             }
         })
@@ -155,7 +157,8 @@ app.get('/changeTheme', (req, res) => {
                 //console.log(data.background);
                     res.send({
                     username: data.username,
-                    background: data.background
+                    background: data.background,
+                    error: data.message
                 })
             }
         })
