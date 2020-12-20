@@ -83,7 +83,7 @@ app.get('/login', (req, res) => {
         })
     }
 
-    fetch('https://nodejs-weather-apps.herokuapp.com/api/signin', {
+    fetch('http://localhost:'+process.env.PORT+'/api/signin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -113,7 +113,7 @@ app.get('/login', (req, res) => {
 
 app.get('/checkSession', (req, res) => {
 
-    fetch('https://nodejs-weather-apps.herokuapp.com/api/loginedPage', {
+    fetch('http://localhost:'+process.env.PORT+'/api/loginedPage', {
         method: 'GET',
         headers: {
             'x-access-token': req.query.accessToken
@@ -139,7 +139,7 @@ app.get('/checkSession', (req, res) => {
 
 app.get('/changeTheme', (req, res) => {
 
-    fetch('https://nodejs-weather-apps.herokuapp.com/api/changeTheme?background='+req.query.background, {
+    fetch('http://localhost:'+process.env.PORT+'/api/changeTheme?background='+req.query.background, {
         method: 'GET',
         headers: {
             'x-access-token': req.query.accessToken
