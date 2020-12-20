@@ -3,7 +3,9 @@ const search = document.querySelector('input.search-location')
 const loginForm = document.querySelector('form.loginForm')
 const loginUsername = document.querySelector('input.username')
 const loginPassword = document.querySelector('input.password')
-const background = document.querySelector('.title-navbar')
+const navBackground = document.querySelector('.title-navbar')
+const loginBackground = document.querySelector('#loginSection')
+const themeBackground = document.querySelector('#loginedSection')
 const loginSection = document.querySelector('#loginSection')
 const loginedSection = document.querySelector('#loginedSection')
 const logoutButton = document.querySelector('#logoutButton')
@@ -15,6 +17,8 @@ const themeRadio4 = document.querySelector('input.theme4')
 const welcome = document.querySelector('#welcome')
 const themeForm = document.querySelector('form.themeForm')
 const checkedRadio = document.querySelectorAll('input[type=radio][name="theme"]:checked')
+const loginErrorMsg = document.querySelector('#loginErrorMsg')
+const themeErrorMsg = document.querySelector('#themeErrorMsg')
 const msgCurrentTemp = document.querySelector('.current-temp')
 const msgLocName = document.querySelector(".location")
 const msgCurrentSummary = document.querySelector(".current-summary")
@@ -65,6 +69,7 @@ loginForm.addEventListener('submit', (event) => {
         response.json().then((data) => {
             if (!data.accessToken) {
                 console.log(data.error);
+                loginErrorMsg.innerHTML=data.error;
             } else {
                 window.sessionStorage.setItem('weatherAppAccessToken',data.accessToken);
                 setBackground(data.background);
@@ -109,12 +114,14 @@ themeForm.addEventListener('submit', (event) => {
         response.json().then((data) => {
             if (!data.background) {
                 console.log(data.error);
+                themeErrorMsg.innerHTML=data.error;
             } else {
                 //Or do nothing is ok
                 setBackground(data.background);
                 loginSection.style.display ="none";
                 loginedSection.style.display ="block";
                 welcome.innerHTML="Welcome "+data.username+",";
+                themeErrorMsg.innerHTML="Theme "+data.background+" saved~";
             }
         })
     })
@@ -314,13 +321,21 @@ function showPostion(position) {
 
 function setBackground(bg){
     if(bg=="1"){
-        background.style.backgroundColor ="#364f6b";
+        navBackground.style.backgroundColor ="#364f6b";
+        loginBackground.style.backgroundImage = "url('/img/light_sky.jpg')";
+        themeBackground.style.backgroundImage = "url('/img/light_sky.jpg')";
     }else if(bg=="2"){
-        background.style.backgroundColor ="#009933";
+        navBackground.style.backgroundColor ="#009933";
+        loginBackground.style.backgroundImage = "url('/img/green_light.jpg')";
+        themeBackground.style.backgroundImage = "url('/img/green_light.jpg')";
     }else if(bg=="3"){
-        background.style.backgroundColor ="#8B008B";
+        navBackground.style.backgroundColor ="#8B008B";
+        loginBackground.style.backgroundImage = "url('/img/purple_bg.jpg')";
+        themeBackground.style.backgroundImage = "url('/img/purple_bg.jpg')";
     }else if(bg=="4"){
-        background.style.backgroundColor ="#000080";
+        navBackground.style.backgroundColor ="#000080";
+        loginBackground.style.backgroundImage = "url('/img/blue_sky.jpg')";
+        themeBackground.style.backgroundImage = "url('/img/blue_sky.jpg')";
     } 
     checkRadio(bg);
 }
