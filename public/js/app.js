@@ -61,16 +61,16 @@ loginForm.addEventListener('submit', (event) => {
     const username = loginUsername.value;
     const password = loginPassword.value;
 
-    fetch('/login?username=' + username+'&password='+password).then((response) => {
+    fetch('/login?username=' + username + '&password=' + password).then((response) => {
         response.json().then((data) => {
             if (!data.accessToken) {
                 console.log(data.error);
             } else {
-                window.sessionStorage.setItem('weatherAppAccessToken',data.accessToken);
+                window.sessionStorage.setItem('weatherAppAccessToken', data.accessToken);
                 setBackground(data.background);
-                loginSection.style.display ="none";
-                loginedSection.style.display ="block";
-                welcome.innerHTML="Welcome "+data.username+",";
+                loginSection.style.display = "none";
+                loginedSection.style.display = "block";
+                welcome.innerHTML = "Welcome " + data.username + ",";
             }
         })
     })
@@ -80,8 +80,8 @@ logoutButton.addEventListener('click', (event) => {
     event.preventDefault()
 
     window.sessionStorage.removeItem('weatherAppAccessToken');
-    loginedSection.style.display ="none";
-    loginSection.style.display ="block";
+    loginedSection.style.display = "none";
+    loginSection.style.display = "block";
     location.reload();
 })
 
@@ -92,29 +92,29 @@ function changeHandler(event) {
 
 Array.prototype.forEach.call(themeRadios, function(radio) {
     radio.addEventListener('change', changeHandler);
- });
+});
 
 themeForm.addEventListener('submit', (event) => {
     event.preventDefault()
 
     var themeChoice;
     Array.prototype.forEach.call(themeRadios, function(radio) {
-        if(radio.checked) { 
-            themeChoice=radio.value;
+        if (radio.checked) {
+            themeChoice = radio.value;
         }
     });
 
     var userAccTok = window.sessionStorage.getItem('weatherAppAccessToken');
-    fetch('/changeTheme?background=' + themeChoice+'&accessToken='+userAccTok).then((response) => {
+    fetch('/changeTheme?background=' + themeChoice + '&accessToken=' + userAccTok).then((response) => {
         response.json().then((data) => {
             if (!data.background) {
                 console.log(data.error);
             } else {
                 //Or do nothing is ok
                 setBackground(data.background);
-                loginSection.style.display ="none";
-                loginedSection.style.display ="block";
-                welcome.innerHTML="Welcome "+data.username+",";
+                loginSection.style.display = "none";
+                loginedSection.style.display = "block";
+                welcome.innerHTML = "Welcome " + data.username + ",";
             }
         })
     })
@@ -208,7 +208,7 @@ function showPostion(position) {
                 messageOne.textContent = data.error
             } else {
                 // console.log("Convert Stamp time to date: " + timeStampToDate(data.currently.time));
-                msgLocName.innerHTML = "Current Weather   &nbsp &nbsp &nbsp" + data.location + "&nbsp &nbsp &nbsp &nbsp Time: " + timeStampToDate(data.currently.time);
+                msgLocName.innerHTML = "Current Weather   &nbsp &nbsp" + data.location + "&nbsp &nbsp Time: " + timeStampToDate(data.currently.time);
                 msgCurrentTemp.innerHTML = Math.round(data.currently.temperature * 10) / 10 + "&#176";
                 msgCurrentSummary.innerHTML = data.currently.summary;
                 iconCurrentCond.src = "/img/" + data.currently.icon + ".png";
@@ -312,29 +312,29 @@ function showPostion(position) {
 
 }
 
-function setBackground(bg){
-    if(bg=="1"){
-        background.style.backgroundColor ="#364f6b";
-    }else if(bg=="2"){
-        background.style.backgroundColor ="#009933";
-    }else if(bg=="3"){
-        background.style.backgroundColor ="#8B008B";
-    }else if(bg=="4"){
-        background.style.backgroundColor ="#000080";
-    } 
+function setBackground(bg) {
+    if (bg == "1") {
+        background.style.backgroundColor = "#364f6b";
+    } else if (bg == "2") {
+        background.style.backgroundColor = "#009933";
+    } else if (bg == "3") {
+        background.style.backgroundColor = "#8B008B";
+    } else if (bg == "4") {
+        background.style.backgroundColor = "#000080";
+    }
     checkRadio(bg);
 }
 
-function checkRadio(themeInput){
-    if(themeInput=="1"){
-        themeRadio1.checked=true;
-    }else if(themeInput=="2"){
-        themeRadio2.checked=true;
-    }else if(themeInput=="3"){
-        themeRadio3.checked=true;
-    }else if(themeInput=="4"){
-        themeRadio4.checked=true;
-    } 
+function checkRadio(themeInput) {
+    if (themeInput == "1") {
+        themeRadio1.checked = true;
+    } else if (themeInput == "2") {
+        themeRadio2.checked = true;
+    } else if (themeInput == "3") {
+        themeRadio3.checked = true;
+    } else if (themeInput == "4") {
+        themeRadio4.checked = true;
+    }
 }
 
 
@@ -347,17 +347,17 @@ function checkSession() {
                     console.log(data.error);
                 } else {
                     console.log("CheckSession: WeatherAppAccessToken exist");
-                    loginSection.style.display ="none";
-                    loginedSection.style.display ="block";
+                    loginSection.style.display = "none";
+                    loginedSection.style.display = "block";
                     setBackground(data.background);
-                    welcome.innerHTML="Welcome "+data.username+",";
+                    welcome.innerHTML = "Welcome " + data.username + ",";
                 }
             })
         })
     } else {
         console.log("CheckSession: No weatherAppAccessToken");
-        loginedSection.style.display ="none";
-        loginSection.style.display ="block";
+        loginedSection.style.display = "none";
+        loginSection.style.display = "block";
     }
 }
 
