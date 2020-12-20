@@ -1,3 +1,3 @@
 module.exports = {
-  secret: "weather-app-2020-project"
+  secret: process.env.APP_SECRET
 };

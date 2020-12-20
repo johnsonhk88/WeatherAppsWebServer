@@ -1,5 +1,5 @@
 module.exports = {
-  USERNAME: "lily",
-  PASSWORD: "lily123",
-  DB: "comp5322.rv5sj.mongodb.net/weather_app_db?retryWrites=true&w=majority"
+  USERNAME: process.env.DB_USERNAME,
+  PASSWORD: process.env.DB_PASSWORD,
+  DB: process.env.DB_PATH
 };
