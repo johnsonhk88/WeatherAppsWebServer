@@ -36,9 +36,9 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
 };
 
 checkBackgroundValid = (req, res, next) => {
-  if(req.body.background){
+  if (req.body.background) {
     var backgroundIndex = parseInt(req.body.background);
-    if (!(backgroundIndex>=1 && backgroundIndex<=4)) {
+    if (!(backgroundIndex >= 1 && backgroundIndex <= 4)) {
       res.status(400).send({
         message: `Background choice not available!`
       });

@@ -79,7 +79,7 @@ app.get('', (req, res) => {
 app.get('/login', (req, res) => {
     if (!req.query.username || !req.query.password) {
         return res.send({
-            error: "You must provide login name and password"
+            error: "You must provide login name and password!"
         })
     }
 
