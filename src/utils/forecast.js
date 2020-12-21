@@ -41,7 +41,7 @@ const forecastAllQuery = (longitude, latitude, callback) => {
     request({ url, json: true }, (error, { body }) => {
 
         // const data = JSON.parse(response.body);
-        // console.log(data.currently); // get currently weather 
+        console.log(body.currently); // get currently weather 
         // console.log(response.body.currently);
         if (error) {
             callback('Unable to connect to weather Services!', undefined); // pass error 

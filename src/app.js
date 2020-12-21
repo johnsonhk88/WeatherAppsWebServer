@@ -83,7 +83,7 @@ app.get('/login', (req, res) => {
         })
     }
 
-    fetch('http://localhost:'+process.env.PORT+'/api/signin', {
+    fetch('http://localhost:' + process.env.PORT + '/api/signin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -101,7 +101,7 @@ app.get('/login', (req, res) => {
                 })
             } else {
                 //console.log(data.accessToken);
-                    res.send({
+                res.send({
                     accessToken: data.accessToken,
                     background: data.background,
                     username: data.username,
@@ -114,7 +114,7 @@ app.get('/login', (req, res) => {
 
 app.get('/checkSession', (req, res) => {
 
-    fetch('http://localhost:'+process.env.PORT+'/api/loginedPage', {
+    fetch('http://localhost:' + process.env.PORT + '/api/loginedPage', {
         method: 'GET',
         headers: {
             'x-access-token': req.query.accessToken
@@ -128,7 +128,7 @@ app.get('/checkSession', (req, res) => {
                 })
             } else {
                 //console.log(data.background);
-                    res.send({
+                res.send({
                     username: data.username,
                     background: data.background,
                     error: data.message
@@ -136,12 +136,12 @@ app.get('/checkSession', (req, res) => {
             }
         })
     })
-    
+
 })
 
 app.get('/changeTheme', (req, res) => {
 
-    fetch('http://localhost:'+process.env.PORT+'/api/changeTheme?background='+req.query.background, {
+    fetch('http://localhost:' + process.env.PORT + '/api/changeTheme?background=' + req.query.background, {
         method: 'GET',
         headers: {
             'x-access-token': req.query.accessToken
@@ -155,7 +155,7 @@ app.get('/changeTheme', (req, res) => {
                 })
             } else {
                 //console.log(data.background);
-                    res.send({
+                res.send({
                     username: data.username,
                     background: data.background,
                     error: data.message
@@ -163,7 +163,7 @@ app.get('/changeTheme', (req, res) => {
             }
         })
     })
-    
+
 })
 
 app.get('/about', (req, res) => {
@@ -199,7 +199,7 @@ app.get('/weather', (req, res) => {
             return res.send({ error })
         }
         // forecast weather data 
-        forecast.forecast(longitude, latitude, (error, forecastData) => {
+        forecast.forecastAllQuery(longitude, latitude, (error, forecastData) => {
             if (error) {
                 // send response with error
                 return res.send({ error })
@@ -260,7 +260,7 @@ app.get('/weatherGeolocateAll', (req, res) => {
         })
     }
 
-    // get geocode 
+    // get back geocode 
     geocode.RevserseGeocode(req.query.longitude, req.query.latitude, (error, { location } = {}) => {
         if (error) {
             // send response with error
@@ -299,8 +299,8 @@ app.get('/products', (req, res) => {
         })
     }
 
-    console.log(req.query.search)
-        //send back json
+    // console.log(req.query.search)
+    //send back json
     res.send({
         products: []
 

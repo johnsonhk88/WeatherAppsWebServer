@@ -42,7 +42,7 @@ const RevserseGeocode = (longitude, latitude, callback) => {
 
         } else {
 
-            console.log(body.features[0]);
+            // console.log(body.features[0]);
             var str = "";
             for (var i = 0; i < body.features[0].context.length; i++) {
                 str += body.features[0].context[i].text + " /";

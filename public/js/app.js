@@ -58,6 +58,32 @@ const forecast3rdHumdity = document.querySelector(".forecast-3rd-humdity")
 const forecast4thHumdity = document.querySelector(".forecast-4th-humdity")
 const forecast5thHumdity = document.querySelector(".forecast-5th-humdity")
 
+function timeStampToDate(t) {
+
+    var milliseconds = t * 1000;
+    var dateObject = new Date(milliseconds);
+
+    return dateObject.toLocaleString();
+}
+
+function timeStampConvertToDDMM(t) {
+    var milliseconds = t * 1000;
+    var dateObject = new Date(milliseconds);
+    var dd = dateObject.toLocaleString("en-US", { day: "numeric" });
+    var mm = dateObject.toLocaleString("en-US", { month: "long" });
+
+    return dd + " " + mm.slice(0, 3);
+}
+
+
+function degToCompass(num) {
+    var directIndex = Math.floor((num / 22.5) + 0.5);
+    var directArr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
+    console.log("Direct Index:" + directIndex);
+    return directArr[(directIndex % 16)];
+
+}
+
 
 loginForm.addEventListener('submit', (event) => {
     event.preventDefault()
@@ -139,7 +165,7 @@ weatherForm.addEventListener('submit', (event) => {
             if (data.error) {
                 messageOne.textContent = data.error
             } else {
-                msgLocName.innerHTML = "Current Weather: &nbsp &nbsp &nbsp" + data.location;
+                msgLocName.innerHTML = "Current Weather   &nbsp &nbsp" + data.location + "&nbsp &nbsp Time: " + timeStampToDate(data.currently.time);
                 msgCurrentTemp.innerHTML = Math.round(data.currently.temperature * 10) / 10 + "&#176";
                 msgCurrentSummary.innerHTML = data.currently.summary;
                 iconCurrentCond.src = "/img/" + data.currently.icon + ".png";
@@ -267,22 +293,7 @@ function showPostion(position) {
 
     })
 
-    function timeStampToDate(t) {
 
-        var milliseconds = t * 1000;
-        var dateObject = new Date(milliseconds);
-
-        return dateObject.toLocaleString();
-    }
-
-    function timeStampConvertToDDMM(t) {
-        var milliseconds = t * 1000;
-        var dateObject = new Date(milliseconds);
-        var dd = dateObject.toLocaleString("en-US", { day: "numeric" });
-        var mm = dateObject.toLocaleString("en-US", { month: "long" });
-
-        return dd + " " + mm.slice(0, 3);
-    }
 
     function timeCovert(t) {
         var datetime = new Date();
@@ -305,12 +316,6 @@ function showPostion(position) {
     }
 
 
-    function degToCompass(num) {
-        var directIndex = Math.floor((num / 22.5) + 0.5);
-        var directArr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
-        return directArr[(directIndex % 16)];
-
-    }
 
 
 
