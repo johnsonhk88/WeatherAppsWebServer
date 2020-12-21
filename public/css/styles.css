@@ -6,11 +6,6 @@ body {
     margin: 0 0% 0 0%;
 }
 
-header {
-    /* margin-top: 16px; */
-    /* margin-bottom: 48px; */
-}
-
 header a {
     color: #f5eeee;
     margin-right: 16px;
@@ -182,11 +177,6 @@ button {
 .current-uv-index-val {
     margin: 1% 30% 30% 42%;
     color: #12E90A;
-}
-
-.current-windspeed-content {
-    /* max-width: 30%; */
-    /* margin: 5% 5%; */
 }
 
 .current-windspeed-content,

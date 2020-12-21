@@ -71,7 +71,7 @@ loginForm.addEventListener('submit', (event) => {
                 console.log(data.error);
                 loginErrorMsg.innerHTML = data.error;
             } else {
-                window.sessionStorage.setItem('weatherAppAccessToken', data.accessToken);
+                setCookie(data.accessToken, 30);
                 setBackground(data.background);
                 loginSection.style.display = "none";
                 loginedSection.style.display = "block";
@@ -84,7 +84,7 @@ loginForm.addEventListener('submit', (event) => {
 logoutButton.addEventListener('click', (event) => {
     event.preventDefault()
 
-    window.sessionStorage.removeItem('weatherAppAccessToken');
+    setCookie("", 0);
     loginedSection.style.display = "none";
     loginSection.style.display = "block";
     location.reload();
@@ -95,7 +95,7 @@ function changeHandler(event) {
     setBackground(this.value);
 }
 
-Array.prototype.forEach.call(themeRadios, function(radio) {
+Array.prototype.forEach.call(themeRadios, function (radio) {
     radio.addEventListener('change', changeHandler);
 });
 
@@ -103,13 +103,13 @@ themeForm.addEventListener('submit', (event) => {
     event.preventDefault()
 
     var themeChoice;
-    Array.prototype.forEach.call(themeRadios, function(radio) {
+    Array.prototype.forEach.call(themeRadios, function (radio) {
         if (radio.checked) {
             themeChoice = radio.value;
         }
     });
 
-    var userAccTok = window.sessionStorage.getItem('weatherAppAccessToken');
+    var userAccTok = getCookie();
     fetch('/changeTheme?background=' + themeChoice + '&accessToken=' + userAccTok).then((response) => {
         response.json().then((data) => {
             if (!data.background) {
@@ -129,7 +129,7 @@ themeForm.addEventListener('submit', (event) => {
 
 weatherForm.addEventListener('submit', (event) => {
     event.preventDefault()
-        // form input value
+    // form input value
     const location = search.value
 
     fetch('/weather?address=' + location).then((response) => {
@@ -353,15 +353,15 @@ function checkRadio(themeInput) {
 }
 
 
-function checkSession() {
-    if (window.sessionStorage.getItem('weatherAppAccessToken')) {
-        var userAT = window.sessionStorage.getItem('weatherAppAccessToken');
+function checkCookieSession() {
+    if (getCookie() != "") {
+        var userAT = getCookie();
         fetch('/checkSession?accessToken=' + userAT).then((response) => {
             response.json().then((data) => {
                 if (data.error) {
                     console.log(data.error);
                 } else {
-                    console.log("CheckSession: WeatherAppAccessToken exist");
+                    console.log("CheckCookie: WeatherAppAccessToken Exist");
                     loginSection.style.display = "none";
                     loginedSection.style.display = "block";
                     setBackground(data.background);
@@ -370,13 +370,35 @@ function checkSession() {
             })
         })
     } else {
-        console.log("CheckSession: No weatherAppAccessToken");
+        console.log("CheckCookie: WeatherAppAccessToken Not Exist");
         loginedSection.style.display = "none";
         loginSection.style.display = "block";
     }
 }
 
 
+function setCookie(jwtToken, expiredays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (expiredays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = "weatherAppAccessToken=" + jwtToken + ";" + expires + ";path=/";
+}
+
+function getCookie() {
+    var name = "weatherAppAccessToken=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 
 getLocation();
-checkSession();
+checkCookieSession();

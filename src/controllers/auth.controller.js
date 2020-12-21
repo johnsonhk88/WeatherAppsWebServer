@@ -50,7 +50,7 @@ exports.signin = (req, res) => {
       }
 
       if (!user) {
-        return res.status(404).send({ message: "User Not found" });
+        return res.status(404).send({ message: "User Not found!" });
       }
 
       var passwordIsValid = bcrypt.compareSync(
@@ -66,7 +66,7 @@ exports.signin = (req, res) => {
       }
 
       var token = jwt.sign({ id: user.id }, config.secret, {
-        expiresIn: 86400 // 24 hours
+        expiresIn: 86400 * 30 // 30 days
       });
 
       UserSetting.findOne({

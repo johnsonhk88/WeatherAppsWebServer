@@ -3,7 +3,7 @@ const User = db.user;
 const UserSetting = db.usersetting;
 
 exports.changeTheme = (req, res) => {
-   User.findById(req.userId)
+  User.findById(req.userId)
     .exec((err, user) => {
       if (err) {
         res.status(500).send({ message: err });
@@ -11,10 +11,10 @@ exports.changeTheme = (req, res) => {
       }
 
       if (!user) {
-        return res.status(404).send({ message: "User Not found." });
+        return res.status(404).send({ message: "User Not found!" });
       }
 
-      UserSetting.findOneAndUpdate({username: user.username},{background: req.query.background},{useFindAndModify: false})
+      UserSetting.findOneAndUpdate({ username: user.username }, { background: req.query.background }, { useFindAndModify: false })
         .exec((err, usersetting) => {
           if (err) {
             res.status(500).send({ message: err });
@@ -34,7 +34,7 @@ exports.changeTheme = (req, res) => {
 };
 
 exports.loginedPage = (req, res) => {
-   User.findById(req.userId)
+  User.findById(req.userId)
     .exec((err, user) => {
       if (err) {
         res.status(500).send({ message: err });
@@ -42,7 +42,7 @@ exports.loginedPage = (req, res) => {
       }
 
       if (!user) {
-        return res.status(404).send({ message: "User Not found." });
+        return res.status(404).send({ message: "User Not found!" });
       }
 
       UserSetting.findOne({
