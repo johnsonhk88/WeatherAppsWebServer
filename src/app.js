@@ -44,24 +44,24 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const db = require("./dbmodels");
+// const db = require("./dbmodels");
 
-db.mongoose
-    .connect(`mongodb+srv://${dbConfig.USERNAME}:${dbConfig.PASSWORD}@${dbConfig.DB}?retryWrites=true&w=majority`, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => {
-        console.log("Successfully connect to MongoDB.");
-    })
-    .catch(err => {
-        console.error("Connection error", err);
-        process.exit();
-    });
+// db.mongoose
+//     .connect(`mongodb+srv://${dbConfig.USERNAME}:${dbConfig.PASSWORD}@${dbConfig.DB}?retryWrites=true&w=majority`, {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true
+//     })
+//     .then(() => {
+//         console.log("Successfully connect to MongoDB.");
+//     })
+//     .catch(err => {
+//         console.error("Connection error", err);
+//         process.exit();
+//     });
 
-// routes
-require("./routes/auth.routes")(app);
-require("./routes/user.routes")(app);
+// // routes
+// require("./routes/auth.routes")(app);
+// require("./routes/user.routes")(app);
 
 
 //setup url endpoint 
